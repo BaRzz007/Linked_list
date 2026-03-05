@@ -26,6 +26,6 @@ public:
     void pushNode(string value);
     void clearList();
     int getSize();
-}
+};
 
 #endif // LINKED_LIST_HPP
