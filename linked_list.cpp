@@ -10,10 +10,50 @@ LinkedList::LinkedList()
     size = 0;
 }
 
+// destructor to clean up the linked list
 LinkedList::~LinkedList()
 {
     clearList();
     delete head;
+}
+
+int LinkedList::getSize()
+{
+    return size;
+}
+
+void LinkedList::printList()
+{
+    if (*head == nullptr)
+    {
+        cout << "List is empty." << endl;
+        return;
+    }
+
+    Node *current = *head;
+    while(current != nullptr)
+    {
+        int index = 0;
+        cout << index << ": " << current->data << endl;
+        current = current->next;
+    }
+}
+
+void LinkedList::clearList()
+{
+    if (*head == nullptr)
+    {
+        cout << "List is empty, no need to clear." << endl;
+        return;
+    }
+    Node *current = *head;
+    while (current != nullptr)
+    {
+        Node *temp = current;
+        current = current->next;
+        delete temp;
+        size--;
+    }
 }
 
 // method to append a node to the end of the linked list
@@ -132,4 +172,14 @@ void LinkedList::insertNode(string value, int position)
     current->next = newNode;
     cout << "Node inserted: " << value << " at position " << position << endl;
     size++;
+}
+
+void LinkedList::pushNode(string value)
+{
+    Node *newNode = new Node;
+    newNode->data = value;
+    newNode->next = *head;
+    *head = newNode;
+    size++;
+    cout << "Node pushed: " << value << endl;
 }
