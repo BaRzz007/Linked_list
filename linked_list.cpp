@@ -1,6 +1,6 @@
+using namespace std;
 #include <iostream>
 #include "linked_list.hpp"
-using namespace std;
 
 // constructor to initialize the linked list
 LinkedList::LinkedList()
