@@ -21,7 +21,7 @@ private:
     void help(string func = "");
     void createList(string name);
     void showAll(); //prints all contexts (lists) and their sizes
-    void exec(vector<string> tokens);
+    bool exec(vector<string> tokens);
     vector<string> parse(string input);
 };
 
