@@ -1,6 +1,7 @@
 #ifndef LINKED_LIST_HPP
 #define LINKED_LIST_HPP
 
+using namespace std;
 #include <string>
 
 class LinkedList
