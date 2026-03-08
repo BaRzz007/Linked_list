@@ -1,6 +1,6 @@
-using namespace std;
 #include <iostream>
 #include "linked_list.hpp"
+using namespace std;
 
 // constructor to initialize the linked list
 LinkedList::LinkedList()
@@ -11,10 +11,9 @@ LinkedList::LinkedList()
 }
 
 // destructor to clean up the linked list
-LinkedList::~LinkedList()
-{
-    clearList();
-    delete head;
+LinkedList::~LinkedList() {
+    //clearList();
+    //delete head;
 }
 
 int LinkedList::getSize()
@@ -30,12 +29,13 @@ void LinkedList::printList()
         return;
     }
 
+    int index = 0;
     Node *current = *head;
     while(current != nullptr)
     {
-        int index = 0;
         cout << index << ": " << current->data << endl;
         current = current->next;
+        index++;
     }
 }
 
@@ -47,13 +47,15 @@ void LinkedList::clearList()
         return;
     }
     Node *current = *head;
-    while (current != nullptr)
+    Node *temp;
+    while (current)
     {
-        Node *temp = current;
+        temp = current;
         current = current->next;
         delete temp;
         size--;
     }
+    *head = nullptr;
 }
 
 // method to append a node to the end of the linked list
@@ -166,7 +168,7 @@ void LinkedList::insertNode(string value, int position)
         current = current->next;
     }
 
-    Node *newNode = new Node;
+    Node *newNode = new Node();
     newNode->data = value;
     newNode->next = current->next;
     current->next = newNode;
@@ -176,7 +178,7 @@ void LinkedList::insertNode(string value, int position)
 
 void LinkedList::pushNode(string value)
 {
-    Node *newNode = new Node;
+    Node *newNode = new Node();
     newNode->data = value;
     newNode->next = *head;
     *head = newNode;

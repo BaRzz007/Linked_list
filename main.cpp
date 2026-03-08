@@ -1,4 +1,6 @@
+#include <string>
 #include <iostream>
+#include <iterator>
 #include "linked_list.hpp"
 using namespace std;
 
@@ -7,6 +9,11 @@ int main(void)
     LinkedList market_list;
     LinkedList course_list;
 
+	/*market_list.appendNode("Mercy");
+	market_list.appendNode("Ezekiel");
+	market_list.printList();
+	market_list.clearList();
+	market_list.printList();*/
     std::cout << "Attempting to add first test dataset" << std::endl;
 	std::string data_set[] = {
 				"Tomato",
@@ -17,16 +24,16 @@ int main(void)
 				"HDMI cable",
 				"SSD for PC",
 				"Birthday cake for Mum"
-};
-	int data_set_length = sizeof(data_set) / sizeof(data_set[0]);
-	for (int i = 0; i < data_set_length; i++) {
+	};
+	int data_set_length = size(data_set);
+	for (int i = 0; i < data_set_length - 1; i++) {
 		market_list.appendNode(data_set[i]);
 	}
 	std::cout << "first test dataset added successfully\n" << std::endl;
 	market_list.printList(); //see all items in the list
 	std::cout << std::endl;
   
-  market_list.insertNode("New Item @ 5 -> Keyboard", 5); //insert an item to index 5 of the list
+  market_list.insertNode("Keyboard", 5); //insert an item to index 5 of the list
   market_list.printList(); //see all the items in the list
 	std::cout << std::endl;
 
@@ -55,16 +62,16 @@ int main(void)
 				"Basic Logic",
 				"Social Studies",
 				"System Analysis and Design"
-		};
-	data_set_length = sizeof(data_set_2) / sizeof(data_set_2[0]);
-	for (int i = 0; i < data_set_length; i++) {
+	};
+	data_set_length = size(data_set_2);
+	for (int i = 0; i < data_set_length - 1; i++) {
 		course_list.appendNode(data_set_2[i]);
 	}
 	std::cout << "second test dataset added successfully\n" << std::endl;
 	course_list.printList(); //see all items in the list
 	std::cout << std::endl;
 
-	course_list.insertNode("New Item @ 5 -> Keyboard", 5); //insert an item to index 5 of the list
+	course_list.insertNode("Keyboard", 5); //insert an item to index 5 of the list
   course_list.printList(); //see all the items in the list
 	std::cout << std::endl;
 
