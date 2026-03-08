@@ -2,10 +2,17 @@
 #include <iostream>
 #include <iterator>
 #include "linked_list.hpp"
+#include "console.hpp"
 using namespace std;
 
-int main(void)
+int main(int argc, char **argv)
 {
+	if (argc > 1 && string(argv[1]) == "interactive") {
+		Console console;
+		console.run();
+		return 0;
+	}
+
     LinkedList market_list;
     LinkedList course_list;
 

@@ -1,54 +1,42 @@
 #include "console.hpp"
 #include <sstream>
+using namespace std;
 
-class Console::Context
-{
-public:
-    Context(string name)
-    {
-        this->name = name;
-        this->list = LinkedList();
-    }
 
-    void append(string value)
-    {
-        this->list.appendNode(value);
-    }
+Console::Context::Context(string name) {
+    this->name = name;
+    this->list = LinkedList();
+}
 
-    void insert(string value, int position)
-    {
-        this->list.insertNode(value, position);
-    }
+void Console::Context::append(string value) {
+    this->list.appendNode(value);
+}
 
-    void push(string value)
-    {
-        this->list.pushNode(value);
-    }
+void Console::Context::insert(string value, int position) {
+    this->list.insertNode(value, position);
+}
 
-    void remove(string value)
-    {
-        this->list.removeNode(value);
-    }
+void Console::Context::push(string value) {
+    this->list.pushNode(value);
+}
 
-    void remove(int position)
-    {
-        this->list.removeNode(position);
-    }
+void Console::Context::remove(string value) {
+    this->list.removeNode(value);
+}
 
-    void clearList()
-    {
-        this->list.clearList();
-    }
+void Console::Context::remove(int position) {
+    this->list.removeNode(position);
+}
 
-    void printList()
-    {
-        cout << "List: " << this->name << endl;
-        this->list.printList();
-    }
-private:
-    string name;
-    LinkedList list;
-};
+void Console::Context::clearList() {
+    this->list.clearList();
+}
+
+void Console::Context::printList() {
+    cout << "List: " << this->name << endl;
+    this->list.printList();
+}
+
 
 void Console::run()
 {
@@ -81,10 +69,13 @@ bool Console::exec(vector<string> tokens)
     {
         if (tokens.size() > 1) createList(tokens[1]);
         else cout << "Usage: create <list_name>" << endl;
+        return false;
     } else if (command == "lists") {
         showAll();
+        return false;
     } else if (command == "help") {
         help(tokens.size() > 1 ? tokens[1] : "");
+        return false;
     } else if (command == "exit") {
         for(auto &pair : context_map) {
             pair.second.clearList();
@@ -104,45 +95,51 @@ bool Console::exec(vector<string> tokens)
         }
 
         string operation = tokens[1];
-        if (operation == "append" && tokens.size() > 2) ctx.append(tokens[2]);
-        else {
-            cout << "Usage: " << command << " append <value>" << endl;
-            return false;
-        }
-        if (operation == "push" && tokens.size() > 2) ctx.push(tokens[2]);
-        else {
-            cout << "Usage: " << command << " push <value>" << endl;
-            return false;
-        }
-        if (operation == "insert") {
+        if (operation == "append") {
+            if (tokens.size() > 2) {
+                ctx.append(tokens[2]);
+            } else {
+                cout << "Usage: " << command << " append <value>" << endl;
+                return false;
+            }
+        } else if (operation == "push") {
+            if (tokens.size() > 2) {
+                ctx.push(tokens[2]);
+            } else {
+                cout << "Usage: " << command << " push <value>" << endl;
+                return false;
+            }
+        } else if (operation == "insert") {
             if (tokens.size() > 3) {
                 try {
                     int pos = stoi(tokens[3]);
                     ctx.insert(tokens[2], pos);
                 } catch (invalid_argument&) {
                     cout << "Position must be an integer." << endl;
+                    return false;
                 }
             } else {
                 cout << "Usage: " << command << " insert <value> <position>" << endl;
                 return false;
             }
-        }
-        if (operation == "remove" && tokens.size() > 2) {
-            try {
-                int pos = stoi(tokens[2]);
-                ctx.remove(pos);
-            } catch (invalid_argument&) {
-                ctx.remove(tokens[2]);
+        } else if (operation == "remove") {
+            if (tokens.size() > 2) {
+                try {
+                    int pos = stoi(tokens[2]);
+                    ctx.remove(pos);
+                } catch (invalid_argument&) {
+                    ctx.remove(tokens[2]);
+                }
+            } else {
+                cout << "Usage: " << command << " remove <value|position>" << endl;
+                return false;
             }
-        } else {
-            cout << "Usage: " << command << " remove <value|position>" << endl;
-            return false;
-        }
-        if (operation == "show_all") {
+        } else if (operation == "show_all") {
             ctx.printList();
+        } else {
+            cout << command << ": " << operation << ": invalid operation" << endl;
             return false;
         }
-        cout << command << ": " << operation << ": " << "invalid operation" << endl;
     }
     return false;
 }
@@ -150,7 +147,7 @@ bool Console::exec(vector<string> tokens)
 void Console::createList(string name)
 {
     if (context_map.find(name) == context_map.end()) {
-        context_map[name] = Context(name);
+        context_map.emplace(name, Context(name));
         cout << "List '" << name << "' created." << endl;
     } else {
         cout << "List '" << name << "' already exists." << endl;
