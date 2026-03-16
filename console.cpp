@@ -3,6 +3,7 @@
 using namespace std;
 
 
+// Console class implementation
 Console::Context::Context(string name) {
     this->name = name;
     this->list = LinkedList();
@@ -38,6 +39,7 @@ void Console::Context::printList() {
 }
 
 
+// Console class methods
 void Console::run()
 {
     string buffer;
