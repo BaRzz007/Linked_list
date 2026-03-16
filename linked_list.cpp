@@ -85,15 +85,15 @@ void LinkedList::appendNode(string value)
 
 void LinkedList::removeNode(int position)
 {
-    if (position < 0 || position >= size)
-    {
-        cout << "Invalid position. No node removed." << endl;
-        return;
-    }
-
     if (*head == nullptr)
     {
         cout << "List is empty. No node removed." << endl;
+        return;
+    }
+
+    if (position < 0 || position >= size)
+    {
+        cout << "Invalid position. No node removed." << endl;
         return;
     }
 
