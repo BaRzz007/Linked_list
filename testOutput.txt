@@ -178,3 +178,93 @@ Node with value "Social Studies" removed.
 4: Keyboard
 
 List is empty.
+Attempting to add first test dataset
+Node appended: Tomato
+Node appended: Plantain
+Node appended: Toiletories
+Node appended: Brown bag
+Node appended: Laptop
+Node appended: HDMI cable
+Node appended: SSD for PC
+first test dataset added successfully
+
+0: Tomato
+1: Plantain
+2: Toiletories
+3: Brown bag
+4: Laptop
+5: HDMI cable
+6: SSD for PC
+
+Node inserted: Keyboard at position 5
+0: Tomato
+1: Plantain
+2: Toiletories
+3: Brown bag
+4: Laptop
+5: Keyboard
+6: HDMI cable
+7: SSD for PC
+
+Node pushed: Priority: Restock on Munchit :-)
+0: Priority: Restock on Munchit :-)
+1: Tomato
+2: Plantain
+3: Toiletories
+4: Brown bag
+5: Laptop
+6: Keyboard
+7: HDMI cable
+8: SSD for PC
+
+Node at position 3 removed.
+0: Priority: Restock on Munchit :-)
+1: Tomato
+2: Plantain
+3: Brown bag
+4: Laptop
+5: Keyboard
+6: HDMI cable
+7: SSD for PC
+
+Node with value "Plantain" removed.
+0: Priority: Restock on Munchit :-)
+1: Tomato
+2: Brown bag
+3: Laptop
+4: Keyboard
+5: HDMI cable
+6: SSD for PC
+
+List is empty. No node removed.
+
+Begin testing with second dataset...
+Node appended: Introduction to programming II
+Node appended: Philosophy
+Node appended: Mathematics
+Node appended: Basic Logic
+Node appended: Social Studies
+second test dataset added successfully
+
+0: Introduction to programming II
+1: Philosophy
+2: Mathematics
+3: Basic Logic
+4: Social Studies
+
+Node inserted: Keyboard at position 5
+0: Introduction to programming II
+1: Philosophy
+2: Mathematics
+3: Basic Logic
+4: Social Studies
+5: Keyboard
+
+Node with value "Social Studies" removed.
+0: Introduction to programming II
+1: Philosophy
+2: Mathematics
+3: Basic Logic
+4: Keyboard
+
+List is empty.
