@@ -4,10 +4,11 @@
 using namespace std;
 #include <string>
 
+// LinkedList class definition
 class LinkedList
 {
 private:
-    struct Node
+    struct Node // Node structure to represent each element in the linked list
     {
         string data;
         Node *next;

@@ -2,7 +2,7 @@
 #include "linked_list.hpp"
 using namespace std;
 
-// constructor to initialize the linked list
+// Constructs an empty linked list by allocating the head pointer and setting it to null.
 LinkedList::LinkedList()
 {
     head = new Node*;
@@ -10,17 +10,21 @@ LinkedList::LinkedList()
     size = 0;
 }
 
-// destructor to clean up the linked list
+// Destroys the linked list.
+// NOTE: The cleanup code is currently commented out to avoid double-free issues in some usages.
+// If you want the list to automatically free nodes, uncomment clearList() and delete head.
 LinkedList::~LinkedList() {
     //clearList();
     //delete head;
 }
 
+// Returns the number of nodes currently stored in the list.
 int LinkedList::getSize()
 {
     return size;
 }
 
+// Prints the list contents to stdout, showing the index and value of each node.
 void LinkedList::printList()
 {
     if (*head == nullptr)
@@ -39,6 +43,7 @@ void LinkedList::printList()
     }
 }
 
+// Deletes every node in the list and resets the head pointer and size counter.
 void LinkedList::clearList()
 {
     if (*head == nullptr)
@@ -58,7 +63,8 @@ void LinkedList::clearList()
     *head = nullptr;
 }
 
-// method to append a node to the end of the linked list
+// Appends a new node with the given value to the end of the list.
+// If the list is empty, the new node becomes the head.
 void LinkedList::appendNode(string value)
 {
     Node *newNode = new Node;
@@ -83,6 +89,8 @@ void LinkedList::appendNode(string value)
     size++;
 }
 
+// Removes the node at the specified zero-based position.
+// If the position is invalid, the list remains unchanged.
 void LinkedList::removeNode(int position)
 {
     if (*head == nullptr)
@@ -119,6 +127,8 @@ void LinkedList::removeNode(int position)
     size--;
 }
 
+// Removes the first node whose data matches the given value.
+// If no matching node exists, the list remains unchanged.
 void LinkedList::removeNode(string value)
 {
     if (*head == nullptr)
@@ -154,6 +164,8 @@ void LinkedList::removeNode(string value)
     cout << "Node with value \"" << value << "\" not found." << endl;
 }
 
+// Inserts a new node with the given value at the specified zero-based position.
+// If the position is invalid, no node is inserted.
 void LinkedList::insertNode(string value, int position)
 {
     if (position < 0 || position > size)
@@ -176,6 +188,7 @@ void LinkedList::insertNode(string value, int position)
     size++;
 }
 
+// Pushes a new node onto the front of the list (new head).
 void LinkedList::pushNode(string value)
 {
     Node *newNode = new Node();
